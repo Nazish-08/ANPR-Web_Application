@@ -1,0 +1,28 @@
+# Object Detection
+ultralytics
+
+# OCR
+paddleocr
+paddlepaddle
+
+# Computer Vision
+opencv-python
+opencv-contrib-python
+cvzone
+
+# Image Processing
+Pillow
+
+# Numerical Computing
+numpy
+
+# Data Analysis (optional)
+pandas
+
+# Plotting (optional)
+matplotlib
+
+# Backend
+fastapi
+uvicorn[standard]
+python-multipart

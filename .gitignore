@@ -1,0 +1,25 @@
+# Virtual environments
+venv/
+venv310/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Generated output
+images/
+plates_*.txt
+
+# Model & video
+best.pt
+vid1.mp4
+*.mp4
+*.pt
+x64/

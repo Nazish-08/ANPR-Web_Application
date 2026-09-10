@@ -1,0 +1,10 @@
+✅ How to Fix It in Thonny
+Open Thonny IDE
+
+Go to Tools → Open system shell
+
+In the shell that appears, run this command:
+
+pip install numpy==1.24.4
+
+🔁 This command installs a compatible version of NumPy (1.24.4), which works smoothly with OpenCV and Ultralytics inside Thonny.
