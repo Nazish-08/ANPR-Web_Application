@@ -56,7 +56,7 @@ body {
     background-size: contain;          /* ← poora image fit hoga, cut nahi hoga */
     background-position: center center; /* ← center me */
     background-repeat: no-repeat;
-    opacity: 100;                     /* ← halka karke background effect dega */
+    opacity: 15;                     /* ← halka karke background effect dega */
     z-index: -3;
     pointer-events: none;
 }
