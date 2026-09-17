@@ -77,3 +77,6 @@ important.txt
 *.tmp
 *.bak
 *.old
+
+models/*.pt
+models/*.onnx
