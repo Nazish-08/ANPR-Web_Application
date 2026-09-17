@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANPR Vision | AI Powered License Plate Recognition</title>
+    
+    <!-- Modern Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+    
+    <!-- Path to Frontend Asset -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- HERO BACKGROUND WITH IMAGE & OVERLAY -->
+    <div class="bg-hero-wrapper"></div>
+    <div class="bg-hero-overlay"></div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="brand">
+            <div class="brand-text">
+                <h2>ANPR <span>Vision</span></h2>
+                <p><span class="live-dot"></span> AI Neural Network Online</p>
+            </div>
+        </div>
+
+        <nav class="nav-pills">
+            <button id="detectionNav" class="nav-btn active" onclick="showSection('uploadSection')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"></path><line x1="16" y1="5" x2="22" y2="5"></line><line x1="19" y1="2" x2="19" y2="8"></line><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
+                Detection
+            </button>
+            <button id="historyNav" class="nav-btn" onclick="showSection('historySection')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                History Logs
+            </button>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <!-- DETECTION SECTION -->
+        <section id="uploadSection">
+
+            <div class="hero">
+                <div class="badge-3d">
+                    <span>✦</span> DEEP LEARNING MODEL V2.4
+                </div>
+                <h1>
+                    Automatic Number <br>
+                    <span class="gradient-text">Plate Recognition</span>
+                </h1>
+                <p>
+                    Precision computer vision pipeline optimized for real-time license plate detection and optical character recognition.
+                </p>
+            </div>
+
+            <!-- UPLOAD CONTAINER CARD -->
+            <div class="upload-card-3d">
+                <div id="dropZone" class="drop-zone">
+                    <div class="upload-symbol-3d">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    </div>
+
+                    <h3>Drag & Drop Media Here</h3>
+                    <p>Select high-resolution images or video files for scanning</p>
+
+                    <label class="browse-btn-3d">
+                        <span>Browse Media File</span>
+                        <input id="fileInput" type="file" accept="image/png,image/jpeg,image/jpg,video/mp4,video/avi,video/quicktime" hidden>
+                    </label>
+
+                    <div class="supported-formats">
+                        <span>JPG</span> • <span>PNG</span> • <span>MP4</span> • <span>MOV</span> • <span>AVI</span>
+                    </div>
+                </div>
+
+                <!-- SELECTED FILE PREVIEW -->
+                <div id="selectedFile" class="selected-file-3d hidden">
+                    <div class="file-details">
+                        <div class="file-icon-3d">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                        </div>
+                        <div class="file-info-text">
+                            <strong id="fileName">file.mp4</strong>
+                            <span id="fileSize">0 MB</span>
+                        </div>
+                    </div>
+                    <button class="remove-file-3d" onclick="removeFile()" title="Remove file">&times;</button>
+                </div>
+
+                <!-- DETECT TRIGGER BUTTON -->
+                <button id="detectBtn" class="detect-btn-3d" disabled onclick="detectFile()">
+                    <span>Scan & Extract Plate Data</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+
+                <!-- LOADING INDICATOR -->
+                <div id="loading" class="loading-3d hidden">
+                    <div class="spinner-3d"></div>
+                    <div class="loading-text">
+                        <strong>Neural Model Processing...</strong>
+                        <span>Analyzing frames and running OCR detection pipeline</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULTS PRESENTATION -->
+            <section id="resultsSection" class="results-section hidden">
+                <div class="section-heading">
+                    <div>
+                        <span class="sub-heading">DETECTION OUTPUT</span>
+                        <h2>Scan Results</h2>
+                    </div>
+                    <div id="totalPlates" class="result-count-badge">0 Plates</div>
+                </div>
+
+                <div id="resultsContainer" class="results-grid"></div>
+            </section>
+
+        </section>
+
+        <!-- HISTORY SECTION -->
+        <section id="historySection" class="hidden">
+            <div class="history-heading">
+                <div>
+                    <span class="sub-heading">CENTRAL LOGS</span>
+                    <h1>Detection History</h1>
+                    <p>Recorded detection outputs synced directly with backend storage.</p>
+                </div>
+                <button class="refresh-btn-3d" onclick="loadHistory()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    Refresh Logs
+                </button>
+            </div>
+
+            <div class="history-card-3d">
+                <div id="historyLoading" class="history-loading">
+                    <div class="spinner-3d" style="margin: 0 auto;"></div>
+                    <p style="margin-top:12px;">Connecting to database...</p>
+                </div>
+
+                <div id="historyEmpty" class="history-empty hidden">
+                    <div class="empty-icon-3d">📂</div>
+                    <h3>No Records Found</h3>
+                    <p>Run a plate scan to log recognition outputs here.</p>
+                </div>
+
+                <div id="historyTableWrapper" class="table-wrapper hidden">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Record ID</th>
+                                <th>Plate Number</th>
+                                <th>Track ID</th>
+                                <th>Confidence</th>
+                                <th>Timestamp</th>
+                                <th>Source</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-3d">
+        <p><strong>ANPR Vision</strong> • Enterprise Neural Recognition Engine</p>
+    </footer>
+
+    <!-- Script Path -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
